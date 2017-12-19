@@ -111,7 +111,7 @@ public class LangdetectService {
         this.alphaWidth = settings.getAsDouble("alpha_width", 0.05);
         this.iterationLimit = settings.getAsInt("iteration_limit", 10000);
         this.probThreshold = settings.getAsDouble("prob_threshold", 0.1);
-        this.convThreshold = settings.getAsDouble("conv_threshold", 0.99999);
+        this.convThreshold = settings.getAsDouble("conv_threshold", 0.00000009);
         this.baseFreq = settings.getAsInt("base_freq", 10000);
         this.filterPattern = settings.get("pattern") != null ?
                 Pattern.compile(settings.get("pattern"), Pattern.UNICODE_CHARACTER_CLASS) : null;
@@ -270,15 +270,17 @@ public class LangdetectService {
     private List<Language> sortProbability(List<Language> list, double[] prob) {
         for (int j = 0; j < prob.length; ++j) {
             double p = prob[j];
-            if (p > probThreshold) {
-                for (int i = 0; i <= list.size(); ++i) {
-                    if (i == list.size() || list.get(i).getProbability() < p) {
-                        String code = langlist.get(j);
-                        if (langmap != null && langmap.containsKey(code)) {
-                            code = langmap.get(code);
+            String code = langlist.get(j);
+            if (p > probThreshold || langlist.get(j).equals("th") {
+                if (p > 0.09) {
+                    for (int i = 0; i <= list.size(); ++i) {
+                        if (i == list.size() || list.get(i).getProbability() < p) { 
+                            if (langmap != null && langmap.containsKey(code)) {
+                                code = langmap.get(code);
+                            }
+                            list.add(i, new Language(code, p));
+                            break;
                         }
-                        list.add(i, new Language(code, p));
-                        break;
                     }
                 }
             }
