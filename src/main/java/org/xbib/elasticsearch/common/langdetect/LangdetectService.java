@@ -271,7 +271,7 @@ public class LangdetectService {
         for (int j = 0; j < prob.length; ++j) {
             double p = prob[j];
             String code = langlist.get(j);
-            if (p > probThreshold || langlist.get(j).equals("th") {
+            if (p > probThreshold || langlist.get(j).equals("th")) {
                 if (p > 0.09) {
                     for (int i = 0; i <= list.size(); ++i) {
                         if (i == list.size() || list.get(i).getProbability() < p) { 
