@@ -271,18 +271,7 @@ public class LangdetectService {
         for (int j = 0; j < prob.length; ++j) {
             double p = prob[j];
             String code = langlist.get(j);
-            if (langlist.get(j).equals("th") && p > 0.99) {
-                for (int i = 0; i <= list.size(); ++i) {
-                    if (i == list.size() || list.get(i).getProbability() < p) { 
-                        if (langmap != null && langmap.containsKey(code)) {
-                            code = langmap.get(code);
-                        }
-                        list.add(i, new Language(code, p));
-                        break;
-                    }
-                }
-            }
-            if (p > probThreshold) {
+            if (p > probThreshold || (langlist.get(j).equals("th") && p > 0.99)) {
                 for (int i = 0; i <= list.size(); ++i) {
                     if (i == list.size() || list.get(i).getProbability() < p) { 
                         if (langmap != null && langmap.containsKey(code)) {
