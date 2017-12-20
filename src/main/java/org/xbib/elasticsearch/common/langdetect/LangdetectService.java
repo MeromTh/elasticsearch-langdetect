@@ -270,10 +270,10 @@ public class LangdetectService {
     private List<Language> sortProbability(List<Language> list, double[] prob) {
         for (int j = 0; j < prob.length; ++j) {
             double p = prob[j];
-            String code = langlist.get(j);
             if (p > probThreshold || (langlist.get(j).equals("th") && p > 0.99)) {
                 for (int i = 0; i <= list.size(); ++i) {
-                    if (i == list.size() || list.get(i).getProbability() < p) { 
+                    if (i == list.size() || list.get(i).getProbability() < p) {
+                        String code = langlist.get(j);
                         if (langmap != null && langmap.containsKey(code)) {
                             code = langmap.get(code);
                         }
