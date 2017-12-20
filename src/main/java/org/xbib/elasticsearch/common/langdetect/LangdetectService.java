@@ -111,7 +111,7 @@ public class LangdetectService {
         this.alphaWidth = settings.getAsDouble("alpha_width", 0.05);
         this.iterationLimit = settings.getAsInt("iteration_limit", 10000);
         this.probThreshold = settings.getAsDouble("prob_threshold", 0.1);
-        this.convThreshold = settings.getAsDouble("conv_threshold", 0.99999);
+        this.convThreshold = settings.getAsDouble("conv_threshold", 0.000009);
         this.baseFreq = settings.getAsInt("base_freq", 10000);
         this.filterPattern = settings.get("pattern") != null ?
                 Pattern.compile(settings.get("pattern"), Pattern.UNICODE_CHARACTER_CLASS) : null;
